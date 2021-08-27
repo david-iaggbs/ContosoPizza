@@ -4,8 +4,9 @@ on:
   pull_request:
     branches: [ main ]
 
-  CodeQL-Build:
-    # CodeQL runs on ubuntu-latest, windows-latest, and macos-latest
+jobs:
+  build:
+
     runs-on: ubuntu-latest
 
     steps:
