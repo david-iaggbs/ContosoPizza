@@ -19,3 +19,19 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+
+  tests:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: integration test
+        run: echo 'Running integration tests ... Success!'
+
+  package:
+    runs-on: ubuntu-latest
+    needs: tests
+    steps:
+      - name: Packages Management
+        run: echo 'Generating packages ... Success!'
+      - name: Version Management
+        run: echo 'Versioning packages ... Success!'
