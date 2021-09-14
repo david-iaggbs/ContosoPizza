@@ -1,0 +1,15 @@
+name: CI
+
+on:
+  workflow_dispatch:  # manual trigger
+  push:
+    branches:
+      - main
+
+jobs:
+
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: PROD
+      run: echo 'Deploying ... Success!'
