@@ -1,6 +1,11 @@
 name: Deployment
 
 on:
+
+  push:
+    branches:
+      - main
+
   workflow_dispatch:
     inputs:
       logLevel:
@@ -9,10 +14,6 @@ on:
         default: 'warning'
       tags:
         description: 'Test scenario tags'
-
-  push:
-    branches:
-      - main
 
 jobs:
 
@@ -25,4 +26,4 @@ jobs:
 
     steps:
       - name: Deploy
-      - run: echo 'Deploying ... Success!'
+        run: echo 'Deploying ... Success!'
