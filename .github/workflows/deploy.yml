@@ -1,7 +1,8 @@
-name: CI
+name: Deployment
 
 on:
-  workflow_dispatch:  # manual trigger
+  workflow_dispatch:
+
   push:
     branches:
       - main
@@ -9,7 +10,12 @@ on:
 jobs:
 
   deploy:
+    name: Deploy to Prod
     runs-on: ubuntu-latest
+
     environment:
       name: PROD
-      run: echo 'Deploying ... Success!'
+
+    steps:
+      - name: Deploy
+      - run: echo 'Deploying ... Success!'
