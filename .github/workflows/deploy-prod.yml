@@ -1,4 +1,4 @@
-name: Deployment
+name: Deployment to Production
 
 on:
 
@@ -12,7 +12,7 @@ on:
         description: 'Test scenario tags'
 
 jobs:
-
+  
   deploy:
     name: Deploy to Prod
     runs-on: ubuntu-latest

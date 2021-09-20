@@ -1,0 +1,25 @@
+name: Deployment to UAT
+
+on:
+
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'
+
+jobs:
+  
+  deploy:
+    name: Deploy to UAT
+    runs-on: ubuntu-latest
+
+    environment:
+      name: UAT
+
+    steps:
+      - name: Deploy
+        run: echo 'Deploying ... Success!'
