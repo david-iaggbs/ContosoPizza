@@ -29,10 +29,13 @@ jobs:
         run: dotnet build --no-restore
       - name: Create the package
         run: dotnet pack --configuration Release
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
       - name: Upload Package
         uses: actions/upload-artifact@v2
         with: 
-          name: ContosoPizza.${{ github.event.release.tag_name }}.nupkg
+          name: ContosoPizza.${{ steps.get_version.outputs.VERSION }}.nupkg
           path: ./bin/Release/ContosoPizza.1.0.0.nupkg
 
       - name: Build changelog
