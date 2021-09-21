@@ -1,6 +1,8 @@
 name: Continuous Integration
 
-on: push
+on:
+  branches:
+      - main
 
 jobs:
   build:
@@ -26,12 +28,3 @@ jobs:
     steps:
       - name: integration test
         run: echo 'Running integration tests ... Success!'
-
-  package:
-    runs-on: ubuntu-latest
-    needs: tests
-    steps:
-      - name: Packages Management
-        run: echo 'Generating packages ... Success!'
-      - name: Version Management
-        run: echo 'Versioning packages ... Success!'
