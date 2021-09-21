@@ -32,7 +32,7 @@ jobs:
       - name: Upload Package
         uses: actions/upload-artifact@v2
         with: 
-          name: ContosoPizza.${GITHUB_REF#refs/tags/}.nupkg
+          name: ContosoPizza.${{ github.event.release.tag_name }}.nupkg
           path: ./bin/Release/ContosoPizza.1.0.0.nupkg
 
       - name: Build changelog
