@@ -17,6 +17,24 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+      
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+      - name: Create the package
+        run: dotnet pack --configuration Release
+      - name: Upload Package
+        uses: actions/upload-artifact@v2
+        with: 
+          name: ContosoPizza.${{ github.ref }}.nupkg
+          path: ./bin/Release/ContosoPizza.1.0.0.nupkg
+
       - name: Build changelog
         id: build_changelog
         uses: mikepenz/release-changelog-builder-action@main
