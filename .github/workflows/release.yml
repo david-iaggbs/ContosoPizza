@@ -37,7 +37,10 @@ jobs:
         with: 
           name: ContosoPizza.${{ steps.get_version.outputs.VERSION }}.nupkg
           path: ./bin/Release/ContosoPizza.1.0.0.nupkg
-
+      - name: Publish Nuget to GitHub registry
+        run: dotnet nuget push ./bin/Release/ContosoPizza.1.0.0.nupkg -k ${GITHUB_TOKEN} -s https://nuget.pkg.github.com/david-iaggbs/index.json --skip-duplicate --no-symbols 
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build changelog
         id: build_changelog
         uses: mikepenz/release-changelog-builder-action@main
