@@ -21,5 +21,14 @@ jobs:
       name: UAT
 
     steps:
+      - name: Get the version
+        id: get_version
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: ${{ github.repository }}
+      - name: Download a single artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: ContosoPizza.${{ steps.keydb.outputs.release }}.nupkg
       - name: Deploy
-        run: echo 'Deploying ... Success!'
+        run: echo 'Deploying ContosoPizza.${{ steps.keydb.outputs.release }}.nupkg ... Success!'
