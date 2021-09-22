@@ -29,6 +29,6 @@ jobs:
       - name: Download a single artifact
         uses: actions/download-artifact@v2
         with:
-          name: ContosoPizza.${{ steps.keydb.outputs.release }}.nupkg
+          name: ContosoPizza.${{ steps.get_version.outputs.release }}.nupkg
       - name: Deploy
-        run: echo 'Deploying ContosoPizza.${{ steps.keydb.outputs.release }}.nupkg ... Success!'
+        run: echo 'Deploying ContosoPizza.${{ steps.get_version.outputs.release }}.nupkg ... Success!'
