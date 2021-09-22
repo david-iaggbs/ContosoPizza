@@ -37,12 +37,16 @@ jobs:
         with: 
           name: ContosoPizza.${{ steps.get_version.outputs.VERSION }}.nupkg
           path: ./bin/Release/ContosoPizza.1.0.0.nupkg
-      - name: Add private Github registry to Nuget
-        run: dotnet nuget add source --username david-iaggbs --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/david-iaggbs/index.json"
-      - name: Publish Nuget to GitHub registry
-        run: dotnet nuget push ./bin/Release/ContosoPizza.1.0.0.nupkg -k ${GITHUB_TOKEN} -s https://nuget.pkg.github.com/david-iaggbs/index.json --skip-duplicate --no-symbols true 
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Add private Github registry to Nuget
+      #   run: dotnet nuget add source --username david-iaggbs --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/david-iaggbs/index.json"
+      # - name: Publish Nuget to GitHub registry
+      #   run: dotnet nuget push ./bin/Release/ContosoPizza.1.0.0.nupkg -k ${GITHUB_TOKEN} -s https://nuget.pkg.github.com/david-iaggbs/index.json --skip-duplicate --no-symbols true 
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: NuGet push
+        run: |
+          dotnet nuget add source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --name github --username ${{ github.repository_owner }} --password ${{ github.token }} --store-password-in-clear-text
+          dotnet nuget push **/*.nupkg --source github
       - name: Build changelog
         id: build_changelog
         uses: mikepenz/release-changelog-builder-action@main
