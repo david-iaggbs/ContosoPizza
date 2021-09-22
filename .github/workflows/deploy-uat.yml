@@ -26,9 +26,12 @@ jobs:
         uses: pozetroninc/github-action-get-latest-release@master
         with:
           repository: ${{ github.repository }}
-      - name: Download a single artifact
-        uses: actions/download-artifact@v2
-        with:
+      - name: Search the package
+        run: dotnet pack --configuration Release
+      - name: Download Package
+        uses: actions/upload-artifact@v2
+        with: 
           name: ContosoPizza.${{ steps.get_version.outputs.release }}.nupkg
+          path: ./bin/Release/ContosoPizza.1.0.0.nupkg
       - name: Deploy
         run: echo 'Deploying ContosoPizza.${{ steps.get_version.outputs.release }}.nupkg ... Success!'

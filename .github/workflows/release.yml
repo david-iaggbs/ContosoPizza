@@ -43,10 +43,6 @@ jobs:
       #   run: dotnet nuget push ./bin/Release/ContosoPizza.1.0.0.nupkg -k ${GITHUB_TOKEN} -s https://nuget.pkg.github.com/david-iaggbs/index.json --skip-duplicate --no-symbols true 
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: NuGet push
-        run: |
-          dotnet nuget add source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --name github --username ${{ github.repository_owner }} --password ${{ github.token }} --store-password-in-clear-text
-          dotnet nuget push **/*.nupkg --source github
       - name: Build changelog
         id: build_changelog
         uses: mikepenz/release-changelog-builder-action@main
