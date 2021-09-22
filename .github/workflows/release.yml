@@ -37,6 +37,8 @@ jobs:
         with: 
           name: ContosoPizza.${{ steps.get_version.outputs.VERSION }}.nupkg
           path: ./bin/Release/ContosoPizza.1.0.0.nupkg
+      - name: Add private Github registry to Nuget
+        run: dotnet nuget add source --username david-iaggbs --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/david-iaggbs/index.json"
       - name: Publish Nuget to GitHub registry
         run: dotnet nuget push ./bin/Release/ContosoPizza.1.0.0.nupkg -k ${GITHUB_TOKEN} -s https://nuget.pkg.github.com/david-iaggbs/index.json --skip-duplicate --no-symbols true 
         env:
