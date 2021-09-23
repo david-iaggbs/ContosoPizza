@@ -21,5 +21,30 @@ jobs:
       name: PROD
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Get the version
+        id: get_version
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: ${{ github.repository }}
+          
+      - name: Search the package
+        run: dotnet pack --configuration Release
+      - name: Download Package
+        uses: actions/upload-artifact@v2
+        with: 
+          name: ContosoPizza.${{ steps.get_version.outputs.release }}.nupkg
+          path: ./bin/Release/ContosoPizza.1.0.0.nupkg
       - name: Deploy
-        run: echo 'Deploying ... Success!'
+        run: echo 'Deploying ContosoPizza.${{ steps.get_version.outputs.release }}.nupkg ... Success!'
