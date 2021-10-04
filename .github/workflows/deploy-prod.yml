@@ -57,5 +57,6 @@ jobs:
     - uses: jules2689/adr-actions@0.0.3
       with:
         adr-dir: ''
-        adr-tool-repo: 'https://github.com/david-iaggbs/global-crq.git'
+        adr-tool-repo: 'https://github.com/david-iaggbs/adr-tools'
+        adr-tool-version: '3.0.0'
 
