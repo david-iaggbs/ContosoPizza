@@ -48,15 +48,4 @@ jobs:
           path: ./bin/Release/ContosoPizza.1.0.0.nupkg
       - name: Deploy
         run: echo 'Deploying ContosoPizza.${{ steps.get_version.outputs.release }}.nupkg ... Success!'
-      
-  generate_adr_toc:
-    runs-on: ubuntu-latest
-    name: Lint ADRs and generate Table of Contents
-    steps:
-    - uses: actions/checkout@v2
-    - uses: jules2689/adr-actions@0.0.3
-      with:
-        adr-dir: '.adr'
-        adr-tool-repo: 'https://github.com/david-iaggbs/adr-tools'
-        adr-tool-version: '3.0.0'
 
