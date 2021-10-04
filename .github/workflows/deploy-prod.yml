@@ -55,4 +55,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: jules2689/adr-actions@0.0.3
+      with:
+        adr-tool-repo: 'https://github.com/david-iaggbs/global-crq.git'
 
