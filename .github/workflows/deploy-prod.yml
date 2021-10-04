@@ -49,11 +49,10 @@ jobs:
       - name: Deploy
         run: echo 'Deploying ContosoPizza.${{ steps.get_version.outputs.release }}.nupkg ... Success!'
       
-      - uses: jules2689/adr-actions@main
-        with:
-          #adr-dir: 'contosopizza' # Optional. Directory in which ADRs are located. Defaults to contents of .adr-dir
-          adr-tool-repo: 'https://github.com/david-iaggbs/global-crq.git' # Optional. ADR Tool Repo location 
-          #debugadr-tool-version: '3.0.0' # Optional. Version of the Tools to use.
-          #github-token: '${{ secrets.GITHUB_TOKEN }}' # Optional. Token with which to commit
-          generate-toc-branches: "['main', 'master']" # Optional: JSON Array of Branch names as a string. specify which branches we should generate TOC on. Defaults to main/master. 
+  generate_adr_toc:
+    runs-on: ubuntu-latest
+    name: Lint ADRs and generate Table of Contents
+    steps:
+    - uses: actions/checkout@v2
+    - uses: jules2689/adr-actions@0.0.3
 
