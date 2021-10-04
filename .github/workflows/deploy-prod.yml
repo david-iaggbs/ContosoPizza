@@ -49,7 +49,7 @@ jobs:
       - name: Deploy
         run: echo 'Deploying ContosoPizza.${{ steps.get_version.outputs.release }}.nupkg ... Success!'
       
-      - uses: jules2689/adr-action@main
+      - uses: jules2689/adr-actions@main
         with:
           adr-dir: 'contosopizza' # Optional. Directory in which ADRs are located. Defaults to contents of .adr-dir
           adr-tool-repo: 'https://github.com/david-iaggbs/global-crq.git' # Optional. ADR Tool Repo location 
