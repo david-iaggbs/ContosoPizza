@@ -51,9 +51,9 @@ jobs:
       
       - uses: jules2689/adr-actions@main
         with:
-          adr-dir: 'contosopizza' # Optional. Directory in which ADRs are located. Defaults to contents of .adr-dir
+          #adr-dir: 'contosopizza' # Optional. Directory in which ADRs are located. Defaults to contents of .adr-dir
           adr-tool-repo: 'https://github.com/david-iaggbs/global-crq.git' # Optional. ADR Tool Repo location 
-          adr-tool-version: '3.0.0' # Optional. Version of the Tools to use.
+          #debugadr-tool-version: '3.0.0' # Optional. Version of the Tools to use.
           #github-token: '${{ secrets.GITHUB_TOKEN }}' # Optional. Token with which to commit
           generate-toc-branches: "['main', 'master']" # Optional: JSON Array of Branch names as a string. specify which branches we should generate TOC on. Defaults to main/master. 
 
