@@ -48,3 +48,4 @@ jobs:
           path: ./bin/Release/ContosoPizza.1.0.0.nupkg
       - name: Deploy
         run: echo 'Deploying ContosoPizza.${{ steps.get_version.outputs.release }}.nupkg ... Success!'
+
